@@ -31,10 +31,20 @@ export default class ProductList {
   
   async init() {
     // 1. Fetch the data from the API
-    const list = await this.dataSource.getData(this.category);
+    this.list = await this.dataSource.getData(this.category);
     
-    // 2. Render the list
-    this.renderList(list);
+    // 2. Add event listener for sorting
+    const sortElement = document.getElementById('sortList');
+    if (sortElement) {
+      sortElement.addEventListener('change', (e) => {
+        this.sortList(e.target.value);
+      });
+      // Initial sort based on default value
+      this.sortList(sortElement.value);
+    } else {
+      // Fallback if select doesn't exist
+      this.renderList(this.list);
+    }
     
     // 3. Set the title dynamically
     const titleElement = document.querySelector('.products h2');
@@ -43,6 +53,29 @@ export default class ProductList {
       const formattedCategory = this.category.charAt(0).toUpperCase() + this.category.slice(1).replace('-', ' ');
       titleElement.textContent = `Top Products: ${formattedCategory}`;
     }
+  }
+
+  sortList(sortOption) {
+    if (!this.list) return;
+    
+    const sortedList = [...this.list];
+    
+    switch (sortOption) {
+      case 'name-asc':
+        sortedList.sort((a, b) => a.NameWithoutBrand.localeCompare(b.NameWithoutBrand));
+        break;
+      case 'name-desc':
+        sortedList.sort((a, b) => b.NameWithoutBrand.localeCompare(a.NameWithoutBrand));
+        break;
+      case 'price-asc':
+        sortedList.sort((a, b) => a.FinalPrice - b.FinalPrice);
+        break;
+      case 'price-desc':
+        sortedList.sort((a, b) => b.FinalPrice - a.FinalPrice);
+        break;
+    }
+    
+    this.renderList(sortedList);
   }
   
   renderList(list) {
