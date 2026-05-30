@@ -190,6 +190,7 @@ button {
 }
 
 .category-list {
+  flex-flow: row wrap;
   gap: 2rem;
   padding: 0;
 }
