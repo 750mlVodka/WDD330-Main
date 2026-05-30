@@ -184,6 +184,27 @@ button {
   justify-content: center;
 }
 
+.product-grid {
+  flex-flow: row wrap;
+}
+
+.product-original-price {
+  color: gray;
+  font-size: 0.9em;
+  margin-top: -10px;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+}
+
+.product-discount {
+  color: #d9534f;
+  font-weight: 300;
+  font-size: 1em;
+  margin-right: 0.5em;
+}
+
 .product-list a {
   text-decoration: none;
   color: var(--dark-grey);
