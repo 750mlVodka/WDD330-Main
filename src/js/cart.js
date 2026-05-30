@@ -2,15 +2,31 @@ import { getLocalStorage, loadHeaderFooter } from './utils.mjs';
 
 function renderCartContents() {
   const cartItems = getLocalStorage('so-cart');
-  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  document.querySelector('.product-list').innerHTML = htmlItems.join('');
+  if (cartItems && cartItems.length > 0) {
+    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+    document.querySelector('.product-list').innerHTML = htmlItems.join('');
+    
+    // Total
+    let total = 0;
+    cartItems.forEach(item => {
+      total += item.FinalPrice;
+    });
+    
+    // New total
+    const cartFooter = document.querySelector('.cart-footer');
+    const cartTotal = document.querySelector('.cart-total');
+    cartTotal.innerHTML = `Total: $${total.toFixed(2)}`;
+    cartFooter.classList.remove('hide');
+  } else {
+    document.querySelector('.product-list').innerHTML = '<p>Your cart is empty.</p>';
+  }
 }
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${item.Images ? item.Images.PrimaryMedium : item.Image}"
       alt="${item.Name}"
     />
   </a>
