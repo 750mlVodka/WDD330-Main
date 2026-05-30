@@ -179,7 +179,7 @@ button {
 
 .product-list {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column;
   list-style-type: none;
   justify-content: center;
 }
