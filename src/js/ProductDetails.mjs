@@ -51,7 +51,16 @@ export default class ProductDetails {
     if (!Array.isArray(cart)) {
       cart = [];
     }
-    cart.push(this.product);
+    
+    // Check if item already exists in cart
+    const existingItem = cart.find(item => item.Id === this.product.Id);
+    if (existingItem) {
+      existingItem.Quantity = (existingItem.Quantity || 1) + 1;
+    } else {
+      this.product.Quantity = 1;
+      cart.push(this.product);
+    }
+    
     setLocalStorage('so-cart', cart);
     updateCartCount();
   }

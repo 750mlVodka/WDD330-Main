@@ -55,7 +55,10 @@ export function updateCartCount() {
   const cart = getLocalStorage("so-cart");
   const cartCount = document.querySelector(".cart-count");
   if (cartCount) {
-    const count = cart ? cart.length : 0;
+    let count = 0;
+    if (cart && cart.length > 0) {
+      count = cart.reduce((acc, item) => acc + (item.Quantity || 1), 0);
+    }
     cartCount.textContent = count;
     cartCount.style.display = count > 0 ? "block" : "none";
   }
