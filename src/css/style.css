@@ -205,6 +205,40 @@ button {
   margin-right: 0.5em;
 }
 
+/* New classes inline */
+.sort-options {
+  text-align: right;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+}
+
+.sort-options select {
+  padding: 0.3rem;
+}
+
+.breadcrumbs {
+  font-size: 0.9em;
+  color: gray;
+}
+
+.list-breadcrumbs {
+  padding: 1rem 1rem 0 1rem;
+}
+
+.detail-breadcrumbs {
+  margin-bottom: 1rem;
+}
+
+.list-original-price {
+  margin-top: 0;
+  font-size: 0.8em;
+}
+
+.cart-qty-input {
+  width: 45px;
+}
+/* End new classes */
+
 .product-list a {
   text-decoration: none;
   color: var(--dark-grey);

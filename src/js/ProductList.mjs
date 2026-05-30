@@ -8,7 +8,7 @@ function productCardTemplate(product) {
     const discount = product.SuggestedRetailPrice - product.FinalPrice;
     const discountPercent = Math.round((discount / product.SuggestedRetailPrice) * 100);
     discountHtml = `<span class="product-discount">-${discountPercent}%</span>`;
-    originalPriceHtml = `<p class="product-original-price" style="margin-top: 0; font-size: 0.8em;">SRP: <span class="strikethrough">$${product.SuggestedRetailPrice.toFixed(2)}</span></p>`;
+    originalPriceHtml = `<p class="product-original-price list-original-price">SRP: <span class="strikethrough">$${product.SuggestedRetailPrice.toFixed(2)}</span></p>`;
   }
 
   return `<li class="product-card">
@@ -46,12 +46,20 @@ export default class ProductList {
       this.renderList(this.list);
     }
     
-    // 3. Set the title dynamically
+    // 3. Set the title dynamically and add breadcrumbs
     const titleElement = document.querySelector('.products h2');
     if (titleElement && this.category) {
       // Capitalize first letter
       const formattedCategory = this.category.charAt(0).toUpperCase() + this.category.slice(1).replace('-', ' ');
       titleElement.textContent = `Top Products: ${formattedCategory}`;
+      
+      // Add breadcrumbs
+      const mainElement = document.querySelector('main');
+      const breadcrumbs = document.querySelector('.breadcrumbs'); // Check if exists to avoid duplicates
+      if (!breadcrumbs) {
+        const breadcrumbHtml = `<div class="breadcrumbs list-breadcrumbs">${formattedCategory} -> (${this.list.length} items)</div>`;
+        mainElement.insertAdjacentHTML('afterbegin', breadcrumbHtml);
+      }
     }
   }
 

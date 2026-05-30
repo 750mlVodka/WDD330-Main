@@ -79,7 +79,7 @@ function cartItemTemplate(item) {
     <h2 class="card__name">${item.Name}</h2>
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">qty: <input type="number" class="cart-qty-input" data-id="${item.Id}" value="${item.Quantity || 1}" min="1" style="width: 45px;"></p>
+  <p class="cart-card__quantity">qty: <input type="number" class="cart-qty-input" data-id="${item.Id}" value="${item.Quantity || 1}" min="1"></p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
 </li>`;
 

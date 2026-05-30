@@ -8,10 +8,13 @@ function productDetailsTemplate(product) {
     const discount = product.SuggestedRetailPrice - product.FinalPrice;
     const discountPercent = Math.round((discount / product.SuggestedRetailPrice) * 100);
     discountHtml = `<span class="product-discount">-${discountPercent}%</span>`;
-    originalPriceHtml = `<p class="product-original-price">Suggested Retail Price : <span class="strikethrough">$${product.SuggestedRetailPrice.toFixed(2)}</span></p>`;
+    originalPriceHtml = `<p class="product-original-price">SRP: <span class="strikethrough">$${product.SuggestedRetailPrice.toFixed(2)}</span></p>`;
   }
 
+  const formattedCategory = product.Category ? (product.Category.charAt(0).toUpperCase() + product.Category.slice(1).replace('-', ' ')) : 'Category';
+
   return `
+    <div class="breadcrumbs detail-breadcrumbs">${formattedCategory}</div>
     <h3>${product.Brand.Name}</h3>
     <h2 class="divider">${product.NameWithoutBrand}</h2>
     <img
