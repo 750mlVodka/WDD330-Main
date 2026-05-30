@@ -41,10 +41,22 @@ export async function loadHeaderFooter() {
 
   renderWithTemplate(header, headerElement);
   renderWithTemplate(footer, footerElement);
+  
+  updateCartCount();
 }
 
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   return urlParams.get(param);
+}
+
+export function updateCartCount() {
+  const cart = getLocalStorage("so-cart");
+  const cartCount = document.querySelector(".cart-count");
+  if (cartCount) {
+    const count = cart ? cart.length : 0;
+    cartCount.textContent = count;
+    cartCount.style.display = count > 0 ? "block" : "none";
+  }
 }
