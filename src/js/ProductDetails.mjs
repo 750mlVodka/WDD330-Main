@@ -66,6 +66,14 @@ export default class ProductDetails {
     
     setLocalStorage('so-cart', cart);
     updateCartCount();
+    
+    const cartElement = document.querySelector('.cart');
+    if (cartElement) {
+      cartElement.classList.add('cart-animate');
+      setTimeout(() => {
+        cartElement.classList.remove('cart-animate');
+      }, 500);
+    }
   }
 
   renderProductDetails(selector) {
