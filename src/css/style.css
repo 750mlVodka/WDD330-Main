@@ -5,7 +5,7 @@
   --primary-color: #f0a868;
   --secondary-color: #525b0f;
   --tertiary-color: #8a470c;
-  --light-grey: #d0d0d0;
+  --light-grey: #d0d0d0cc;
   --dark-grey: #303030;
 
   /* sizes */
@@ -437,6 +437,46 @@ button {
 #checkoutSubmit:hover {
   background-color: var(--tertiary-color);
   color: white;
+}
+
+/* Newsletter Styles */
+.newsletter {
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: var(--light-grey);
+  text-align: center;
+  border-radius: 8px;
+}
+
+.newsletter h2 {
+  color: var(--secondary-color);
+  margin-bottom: 0.5rem;
+}
+
+.newsletter p {
+  margin-bottom: 1rem;
+}
+
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.newsletter-form input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid var(--dark-grey);
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: var(--font-base);
+}
+
+.newsletter-form button {
+  margin: 0;
+  display: inline-block;
 }
 
 footer {
