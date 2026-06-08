@@ -12,7 +12,23 @@ export default class ExternalServices {
   constructor() {}
   
   getData(category) {
-    return fetch(baseURL + `products/search/${category}`)
+    let formattedCategory = category ? category.toLowerCase().trim() : '';
+    
+    // Map common variations to exact API categories
+    const categoryMap = {
+      'tent': 'tents',
+      'backpack': 'backpacks',
+      'sleeping bag': 'sleeping-bags',
+      'sleeping bags': 'sleeping-bags',
+      'sleeping-bag': 'sleeping-bags',
+      'hammock': 'hammocks'
+    };
+    
+    if (categoryMap[formattedCategory]) {
+      formattedCategory = categoryMap[formattedCategory];
+    }
+
+    return fetch(baseURL + `products/search/${formattedCategory}`)
       .then(convertToJson)
       .then((data) => data.Result);
   }

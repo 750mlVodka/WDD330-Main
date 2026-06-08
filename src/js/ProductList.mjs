@@ -87,6 +87,10 @@ export default class ProductList {
   }
   
   renderList(list) {
+    if (!list || list.length === 0) {
+      this.listElement.innerHTML = '<li style="grid-column: 1/-1; text-align: center; padding: 2rem;">No products found. Please try searching by category, e.g., "tents", "backpacks", "sleeping-bags", or "hammocks".</li>';
+      return;
+    }
     const htmlStrings = list.map(productCardTemplate);
     this.listElement.innerHTML = htmlStrings.join('');
   }
