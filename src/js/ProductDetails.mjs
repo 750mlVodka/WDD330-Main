@@ -20,6 +20,8 @@ function productDetailsTemplate(product) {
     <img
       class="divider"
       src="${product.Images.PrimaryLarge}"
+      srcset="${product.Images.PrimaryExtraLarge} 600w, ${product.Images.PrimaryLarge} 320w, ${product.Images.PrimaryMedium} 160w"
+      sizes="(min-width: 500px) 600px, 100vw"
       alt="${product.NameWithoutBrand}"
     />
     <p class="product-card__price">${discountHtml} $${product.FinalPrice.toFixed(2)}</p>
